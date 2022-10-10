@@ -1,21 +1,17 @@
 version: "3.8"
 services:
     web:
-        build:
-            context: .
-            dockerfile: Dockerfile.web
+        image: aleksovops/devops-aleksov-web
+        deploy:
+            replicas: 3
         ports:
             - 8080:80
         volumes:
             - "/home/vagrant/devopsapp/web:/var/www/html:ro"
         networks:
             - devops-network
-        depends_on:
-            - db
     db:
-        build:
-            context: .
-            dockerfile: Dockerfile.db
+        image: aleksovops/devops-aleksov-db
         networks:
             - devops-network
         environment:
